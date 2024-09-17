@@ -44,7 +44,7 @@ def generate_unique_id(
                 if len(unique_id) == size:
                     break
 
-    return ''.join(unique_id)
+    return "".join(unique_id)
 
 
 def algorithm_generate(random_bytes: int) -> bytes:
@@ -56,10 +56,10 @@ def generate(alphabet: str = ALPHABET, size: int = DEFAULT_SIZE) -> str:
     """Generate a unique ID using the given alphabet and size."""
     if not alphabet:
         raise ValueError("Alphabet must be non-empty.")
-    
+
     if size <= 0:
         raise ValueError("Size must be greater than 0.")
-    
+
     return generate_unique_id(algorithm_generate, alphabet, size)
 
 
