@@ -29,20 +29,22 @@ def generate_unique_id(
     algorithm: Callable[[int], bytes], alphabet: str, size: int
 ) -> str:
     """Generate a unique ID of a given size."""
-    alphabet_length = len(alphabet)
-    mask = calculate_mask(alphabet_length)
-    step = calculate_step(mask, size, alphabet_length)
+    alphabet_length: int = len(alphabet)
+    mask: int = calculate_mask(alphabet_length)
+    step: int = calculate_step(mask, size, alphabet_length)
 
-    unique_id = []
+    unique_id: list = []
     while len(unique_id) < size:
-        random_bytes = generate_random_bytes(algorithm, step)
+        random_bytes: bytes = generate_random_bytes(algorithm, step)
 
         for random_byte in random_bytes:
-            index = random_byte & mask
-            if index < alphabet_length:
-                unique_id.append(alphabet[index])
-                if len(unique_id) == size:
-                    break
+            index: int = random_byte & mask
+            if index >= alphabet_length:
+                continue
+
+            unique_id.append(alphabet[index])
+            if len(unique_id) == size:
+                break
 
     return "".join(unique_id)
 
