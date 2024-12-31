@@ -59,7 +59,7 @@ def generate(alphabet: str = ALPHABET, size: int = DEFAULT_SIZE) -> str:
     if not alphabet:
         raise ValueError("Alphabet must be non-empty.")
 
-    if size <= 0:
+    if size < 1:
         raise ValueError("Size must be greater than 0.")
 
     return generate_unique_id(algorithm_generate, alphabet, size)
